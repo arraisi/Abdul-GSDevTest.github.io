@@ -6,7 +6,6 @@ import com.geekseat.abdul.technical.test.service.WebService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,13 +37,7 @@ public class WebController {
         persons.add(new Person(person.getAgePersonA(), person.getDeathOnYearPersonA()));
         persons.add(new Person(person.getAgePersonB(), person.getDeathOnYearPersonB()));
 
-        for (int i = 0; i < persons.size()-1; i++) {
-            if (persons.get(i).getAge() == null || persons.get(i).getDeathOnYear() == null || persons.get(i).bornOnYear() < 0) {
-                return "redirect:/result?averageKilled=" + -1;
-            }
-        }
-
-        double result = service.solution(persons);
+        double result = service.calculateAverageNumberKilled(persons);
         return "redirect:/result?averageKilled=" + result;
     }
 }

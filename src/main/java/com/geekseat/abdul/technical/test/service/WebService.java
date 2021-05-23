@@ -7,12 +7,31 @@ import java.util.ArrayList;
 
 @Service
 public class WebService {
-    public double solution(ArrayList<Person> persons) {
+
+    public double calculateAverageNumberKilled(ArrayList<Person> persons) {
         try {
-            return persons.stream().mapToDouble(person -> totalKilledInYear(person.bornOnYear())).sum() / persons.size();
+
+            if (dataValidation(persons)) {
+                return persons.stream().mapToDouble(person -> totalKilledInYear(person.bornOnYear())).sum() / persons.size();
+            } else return -1;
+
         } catch (Exception e) {
             return -1;
         }
+    }
+
+    public boolean dataValidation(ArrayList<Person> persons) {
+        if (persons.size() < 2) {
+            return false;
+        }
+
+        for (int i = 0; i < persons.size() - 1; i++) {
+            if (persons.get(i).getAge() == null || persons.get(i).getDeathOnYear() == null || persons.get(i).bornOnYear() < 1) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     public int totalKilledInYear(int numberOfYear) {
