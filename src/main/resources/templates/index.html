@@ -37,6 +37,11 @@
             background-color: rgba(135, 135, 135, 0.5) !important;
         }
 
+        .modal-content {
+            color: black;
+            background-color: #ffc306;
+        }
+
         .social_icon span {
             font-size: 60px;
             margin-left: 10px;
@@ -81,7 +86,9 @@
         }
     </style>
 
-    <link rel="icon" href="https://img-premium.flaticon.com/png/512/218/218200.png?token=exp=1621783719~hmac=e231e5766beb576eb0e79a0f71e0846b" type="image/x-icon">
+    <link rel="icon"
+          href="https://img-premium.flaticon.com/png/512/218/218200.png?token=exp=1621783719~hmac=e231e5766beb576eb0e79a0f71e0846b"
+          type="image/x-icon">
     <title>The Witcher</title>
 </head>
 <body>
@@ -106,7 +113,8 @@
                                     <span class="input-group-text"><i class="fas fa-user"></i></span>
                                 </div>
 
-                                <input type="number" class="form-control" name="agePersonA" th:value="*{agePersonA}" th:field="*{agePersonA}"
+                                <input type="number" class="form-control" name="agePersonA" th:value="*{agePersonA}"
+                                       th:field="*{agePersonA}"
                                        placeholder="Age of death" onkeypress="return onlyNumberKey(event)"/>
 
                             </div>
@@ -116,7 +124,8 @@
                                     <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
                                 </div>
                                 <input type="number" class="form-control" name="deathOnYearPersonA"
-                                       th:value="*{deathOnYearPersonA}" th:field="*{deathOnYearPersonA}" placeholder="Year of death" onkeypress="return onlyNumberKey(event)"/>
+                                       th:value="*{deathOnYearPersonA}" th:field="*{deathOnYearPersonA}"
+                                       placeholder="Year of death" onkeypress="return onlyNumberKey(event)"/>
 
                             </div>
 
@@ -145,7 +154,8 @@
                                     <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
                                 </div>
                                 <input type="number" class="form-control" name="deathOnYearPersonB"
-                                       th:value="*{deathOnYearPersonB}" placeholder="Year of death" onkeypress="return onlyNumberKey(event)"/>
+                                       th:value="*{deathOnYearPersonB}" placeholder="Year of death"
+                                       onkeypress="return onlyNumberKey(event)"/>
                             </div>
 
                         </div>
@@ -154,10 +164,24 @@
 
                 </div>
 
-                <div class="card-footer">
-                    <div class="d-flex justify-content-center links">
-                        <input type="submit" value="Solve" class="btn solve_btn" onclick="submit()">
-                    </div>
+                <!--                <div class="card-footer">-->
+                <!--                    &lt;!&ndash; Button trigger modal &ndash;&gt;-->
+                <!--                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">-->
+                <!--                        Launch demo modal-->
+                <!--                    </button>-->
+                <!--                    <div class="d-flex justify-content-center links">-->
+                <!--                        <input type="submit" value="Solve" class="btn solve_btn" onclick="submit()">-->
+                <!--                    </div>-->
+                <!--                </div>-->
+
+
+                <div class="card-footer text-center">
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-light" data-toggle="modal" data-target="#exampleModalLong"
+                            style="width: 100px">
+                        Role
+                    </button>
+                    <input type="submit" value="Solve" class="btn solve_btn" onclick="submit()">
                 </div>
 
             </form>
@@ -166,6 +190,77 @@
 
     </div>
 
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Role</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p><strong>The story: Geekseat Witch Saga: Return of The Coder!</strong></p>
+                <p>Somewhere far far away, there is a village which is controlled by a dark and cunning witch.&nbsp;</p>
+                <p>Coincidentally, this witch is also a die-hard programmer.</p>
+                <p>The witch has power to control death and life of the villager.</p>
+                <p>The witch will kill a number of villagers each year.</p>
+                <p>Since the witch is a die hard programmer, she follow a specific rule to decide the number</p>
+                <p>of villagers she should kill each year.</p>
+                <p>On the 1st year she kills 1 villager</p>
+                <p>On the 2nd year she kills 1 + 1 = 2 villagers</p>
+                <p>On the 3rd year she kills 1 + 1 + 2 = 4 villagers&nbsp;</p>
+                <p>On the 4th year she kills 1 + 1 + 2 + 3 = 7 villagers</p>
+                <p>On the 5th year she kills 1 + 1 + 2 + 3 + 5 = 12 villagers</p>
+                <p>And so on...</p>
+                <p>The villagers are furious with the witch and want to get rid of her and there is one way to</p>
+                <p>get rid of her.</p>
+                <p>The witch will only leave if there is a brave programmer in the villager who can create a</p>
+                <p>program to solve this problem:</p>
+                <p>If given two people whose age of death and year of death are known, find the average</p>
+                <p>number of people the witch killed on year of birth of those people</p>
+                <p>Example:</p>
+                <p>Given:</p>
+                <p>Person A: Age of death = 10, Year of Death = 12</p>
+                <p>Person B: Age of death = 13, Year of Death = 17</p>
+                <p>Answer:</p>
+                <p>Person A born on Year = 12 &ndash; 10 = 2, number of people killed on year 2 is 2.</p>
+                <p>Person B born on Year = 17 &ndash; 13 = 4, number of people killed on year 4 is 7.</p>
+                <p>So the average is ( 7 + 2 )/2 = 4.5</p>
+                <p>If you give invalid data (i.e. negative age, person who born before the witch took</p>
+                <p>control) the program should return -1.</p>
+                <p>So, if a villager who can create a program to solve the problem, the witch will leave, and</p>
+                <p>the killing will be stopped.</p>
+                <p>There was one programmer who was able to solve the problem, but the witch did not like</p>
+                <p>the code because the code was messy and make her angry.</p>
+                <p>She then proceeded to kill the programmer. Now the villagers know that they also need to</p>
+                <p>make the code clean and structured.</p>
+                <p>Now you are asked by the villager to make the code by previous programmer cleaner and</p>
+                <p>beautifully structured.</p>
+                <p>Note that the witch loves OOP and math very much. And also note that year is started</p>
+                <p>since the witch take control of the village.</p>
+                <p>Since you&rsquo;re on your own, it will be much safer to write unit test. Plus point if you do
+                    it.</p>
+                <ul>
+                    <li>Host your code in GitHub. Send us the link.</li>
+                </ul>
+                <ul>
+                    <li>Plus point if you can publish your code.</li>
+                </ul>
+                <p>Example: using&nbsp;<a
+                        href="https://pages.github.com/"><u>https://pages.github.com/</u></a>or&nbsp;<a
+                        href="https://www.heroku.com/free"><u>https://www.heroku.com/free</u></a></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+                <!--                <button type="button" class="btn btn-primary">Save changes</button>-->
+            </div>
+        </div>
+    </div>
 </div>
 
 <!-- Optional JavaScript -->
