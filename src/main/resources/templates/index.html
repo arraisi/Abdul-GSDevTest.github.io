@@ -24,6 +24,10 @@
             font-family: 'Numans', sans-serif;
         }
 
+        label {
+            color: white;
+        }
+
         .container {
             height: 100%;
             align-content: center;
@@ -98,82 +102,63 @@
         <div class="card ml-2 mr-2">
             <form th:action="@{/solve}" method="post" th:object="${person}">
 
-                <div class="row">
 
-                    <div class="col-6">
+                <div class="card-header" style="color: #ffc306">
+                    <h3>Let's get rid of the witch</h3>
+                </div>
 
-                        <div class="card-header">
-                            <h3>Person A</h3>
-                        </div>
+                <div class="card-body">
 
-                        <div class="card-body">
-
+                    <div class="row">
+                        <div class="col-6">
                             <div class="input-group form-group">
+                                <label class="col-12" for="agePersonA">Age of death A</label>
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-user"></i></span>
                                 </div>
-
-                                <input type="number" class="form-control" name="agePersonA" th:value="*{agePersonA}"
+                                <input type="number" class="form-control" id="agePersonA" name="agePersonA"
+                                       th:value="*{agePersonA}"
                                        th:field="*{agePersonA}"
-                                       placeholder="Age of death" onkeypress="return onlyNumberKey(event)"/>
-
+                                       placeholder="0" onkeypress="return onlyNumberKey(event)"/>
                             </div>
 
                             <div class="input-group form-group">
+                                <label class="col-12" for="deathOnYearPersonA">Year of death A</label>
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
                                 </div>
-                                <input type="number" class="form-control" name="deathOnYearPersonA"
+                                <input type="number" class="form-control" id="deathOnYearPersonA"
+                                       name="deathOnYearPersonA"
                                        th:value="*{deathOnYearPersonA}" th:field="*{deathOnYearPersonA}"
-                                       placeholder="Year of death" onkeypress="return onlyNumberKey(event)"/>
-
+                                       placeholder="0" onkeypress="return onlyNumberKey(event)"/>
                             </div>
-
                         </div>
 
-                    </div>
-
-                    <div class="col-6">
-
-                        <div class="card-header">
-                            <h3>Person B</h3>
-                        </div>
-
-                        <div class="card-body">
-
+                        <div class="col-6">
                             <div class="input-group form-group">
+                                <label class="col-12" for="agePersonB">Age of death B</label>
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-user"></i></span>
                                 </div>
-                                <input type="number" class="form-control" name="agePersonB" th:value="*{agePersonB}"
-                                       placeholder="Age of death" onkeypress="return onlyNumberKey(event)"/>
+                                <input type="number" class="form-control" id="agePersonB" name="agePersonB"
+                                       th:value="*{agePersonB}"
+                                       placeholder="0" onkeypress="return onlyNumberKey(event)"/>
                             </div>
 
                             <div class="input-group form-group">
+                                <label class="col-12" for="deathOnYearPersonB">Year of death B</label>
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
                                 </div>
-                                <input type="number" class="form-control" name="deathOnYearPersonB"
-                                       th:value="*{deathOnYearPersonB}" placeholder="Year of death"
+                                <input type="number" class="form-control" id="deathOnYearPersonB"
+                                       name="deathOnYearPersonB"
+                                       th:value="*{deathOnYearPersonB}" placeholder="0"
                                        onkeypress="return onlyNumberKey(event)"/>
                             </div>
-
                         </div>
-
                     </div>
 
                 </div>
-
-                <!--                <div class="card-footer">-->
-                <!--                    &lt;!&ndash; Button trigger modal &ndash;&gt;-->
-                <!--                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">-->
-                <!--                        Launch demo modal-->
-                <!--                    </button>-->
-                <!--                    <div class="d-flex justify-content-center links">-->
-                <!--                        <input type="submit" value="Solve" class="btn solve_btn" onclick="submit()">-->
-                <!--                    </div>-->
-                <!--                </div>-->
-
 
                 <div class="card-footer text-center">
                     <!-- Button trigger modal -->
@@ -251,9 +236,11 @@
                 <ul>
                     <li>Plus point if you can publish your code.</li>
                 </ul>
-                <p>Example: using&nbsp;<a
-                        href="https://pages.github.com/"><u>https://pages.github.com/</u></a>or&nbsp;<a
-                        href="https://www.heroku.com/free"><u>https://www.heroku.com/free</u></a></p>
+                <p>Example: using&nbsp;
+                    <a href="https://pages.github.com/"><u>https://pages.github.com/</u></a>
+                    &nbsp;or&nbsp;
+                    <a href="https://www.heroku.com/free"><u>https://www.heroku.com/free</u></a>
+                </p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>

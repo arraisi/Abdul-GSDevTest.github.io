@@ -1,6 +1,7 @@
 package com.geekseat.abdul.technical.test.service;
 
 import com.geekseat.abdul.technical.test.model.Person;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.DisplayName;
@@ -34,7 +35,7 @@ public class WebServiceTests {
 
     @Test
     @DisplayName("Test untuk validasi data valid")
-    public void testDataValidationSuccess() {
+    public void testDataValidationSuccess() throws IllegalAccessException {
         ArrayList<Person> persons = new ArrayList<>();
         persons.add(new Person(10, 12));
         persons.add(new Person(13, 17));
@@ -43,18 +44,25 @@ public class WebServiceTests {
 
     @Test
     @DisplayName("Test untuk validasi data invalid")
-    public void testDataValidationFailed() {
+    public void testDataValidationFailed() throws IllegalAccessException {
+
         ArrayList<Person> persons1 = new ArrayList<>();
         persons1.add(new Person(null, 12));
-        assertFalse(service.dataValidation(persons1));
+        assertThrows(IllegalArgumentException.class, () -> {
+            service.dataValidation(persons1);
+        });
 
         ArrayList<Person> persons2 = new ArrayList<>();
         persons2.add(new Person(10, null));
-        assertFalse(service.dataValidation(persons2));
+        assertThrows(IllegalArgumentException.class, () -> {
+            service.dataValidation(persons2);
+        });
 
         ArrayList<Person> persons3 = new ArrayList<>();
         persons3.add(new Person(10, 5));
-        assertFalse(service.dataValidation(persons3));
+        assertThrows(IllegalArgumentException.class, () -> {
+            assertFalse(service.dataValidation(persons3));
+        });
     }
 
     @Test

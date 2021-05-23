@@ -3,6 +3,7 @@ package com.geekseat.abdul.technical.test.service;
 import com.geekseat.abdul.technical.test.model.Person;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.UndeclaredThrowableException;
 import java.util.ArrayList;
 
 @Service
@@ -10,24 +11,22 @@ public class WebService {
 
     public double calculateAverageNumberKilled(ArrayList<Person> persons) {
         try {
-
-            if (dataValidation(persons)) {
-                return persons.stream().mapToDouble(person -> totalKilledInYear(person.bornOnYear())).sum() / persons.size();
-            } else return -1;
-
+            dataValidation(persons);
+            return persons.stream().mapToDouble(person -> totalKilledInYear(person.bornOnYear())).sum() / persons.size();
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             return -1;
         }
     }
 
-    public boolean dataValidation(ArrayList<Person> persons) {
+    public boolean dataValidation(ArrayList<Person> persons) throws IllegalArgumentException {
         if (persons.size() < 2) {
-            return false;
+            throw new IllegalArgumentException("Data must be more than one");
         }
 
         for (int i = 0; i < persons.size() - 1; i++) {
             if (persons.get(i).getAge() == null || persons.get(i).getDeathOnYear() == null || persons.get(i).bornOnYear() < 1) {
-                return false;
+                throw new IllegalArgumentException("Invalid data");
             }
         }
 
