@@ -14,7 +14,7 @@ public class WebServiceTests {
     private final WebService service = new WebService();
 
     @Test
-    @DisplayName("Test menghitung rata-rata orang terbunuh benar")
+    @DisplayName("Test berhasil menghitung rata-rata orang terbunuh")
     public void testCalculateAverageNumberKilledSuccess() {
         ArrayList<Person> persons = new ArrayList<>();
         persons.add(new Person(10, 12));
@@ -24,7 +24,7 @@ public class WebServiceTests {
     }
 
     @Test
-    @DisplayName("Test menghitung rata-rata orang terbunuh salah")
+    @DisplayName("Test gagal menghitung rata-rata orang terbunuh")
     public void testCalculateAverageNumberKilledFailed() {
         ArrayList<Person> persons = new ArrayList<>();
         persons.add(new Person(10, 12));
@@ -34,7 +34,7 @@ public class WebServiceTests {
     }
 
     @Test
-    @DisplayName("Test untuk validasi data valid")
+    @DisplayName("Test valid, validasi data")
     public void testDataValidationSuccess() throws IllegalAccessException {
         ArrayList<Person> persons = new ArrayList<>();
         persons.add(new Person(10, 12));
@@ -43,7 +43,7 @@ public class WebServiceTests {
     }
 
     @Test
-    @DisplayName("Test untuk validasi data invalid")
+    @DisplayName("Test invalid, validasi data")
     public void testDataValidationFailed() throws IllegalAccessException {
 
         ArrayList<Person> persons1 = new ArrayList<>();
@@ -66,10 +66,16 @@ public class WebServiceTests {
     }
 
     @Test
-    @DisplayName("Test untuk menghitung yang terbunuh berdasarkan tahun benar")
+    @DisplayName("Test berhasil menghitung yang terbunuh berdasarkan tahun")
     public void testTotalKilledInYearSuccess() {
-        double numberKilledIn2th = service.totalKilledInYear(2);
-        assertEquals(2, numberKilledIn2th);
+        double numberKilledIn1st = service.totalKilledInYear(1);
+        assertEquals(1, numberKilledIn1st);
+
+        double numberKilledIn2nd = service.totalKilledInYear(2);
+        assertEquals(2, numberKilledIn2nd);
+
+        double numberKilledIn3th = service.totalKilledInYear(3);
+        assertEquals(4, numberKilledIn3th);
 
         double numberKilledIn4th = service.totalKilledInYear(4);
         assertEquals(7, numberKilledIn4th);
@@ -79,11 +85,11 @@ public class WebServiceTests {
     }
 
     @Test
-    @DisplayName("Test untuk menghitung total yang terbunuh berdasarkan tahun salah")
+    @DisplayName("Test gagal menghitung total yang terbunuh berdasarkan tahun")
     public void testTotalKilledInYearFailed() {
-        double numberKilledIn2th = service.totalKilledInYear(2);
-        assertNotEquals(1, numberKilledIn2th);
-        assertNotEquals(3, numberKilledIn2th);
+        double numberKilledIn2nd = service.totalKilledInYear(2);
+        assertNotEquals(1, numberKilledIn2nd);
+        assertNotEquals(3, numberKilledIn2nd);
 
         double numberKilledIn4th = service.totalKilledInYear(4);
         assertNotEquals(4, numberKilledIn4th);
