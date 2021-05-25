@@ -21,6 +21,12 @@ public class WebServiceTests {
         persons.add(new Person(13, 17));
         double averageNumberKilled = service.calculateAverageNumberKilled(persons);
         assertEquals(4.5, averageNumberKilled);
+
+        ArrayList<Person> persons2nd = new ArrayList<>();
+        persons2nd.add(new Person(10, 10));
+        persons2nd.add(new Person(13, 13));
+        double averageNumberKilled2nd = service.calculateAverageNumberKilled(persons2nd);
+        assertEquals(0, averageNumberKilled2nd);
     }
 
     @Test
@@ -35,16 +41,21 @@ public class WebServiceTests {
 
     @Test
     @DisplayName("Test valid, validasi data")
-    public void testDataValidationSuccess() throws IllegalAccessException {
+    public void testDataValidationSuccess() {
         ArrayList<Person> persons = new ArrayList<>();
         persons.add(new Person(10, 12));
         persons.add(new Person(13, 17));
         assertTrue(service.dataValidation(persons));
+
+        ArrayList<Person> persons2nd = new ArrayList<>();
+        persons2nd.add(new Person(10, 10));
+        persons2nd.add(new Person(13, 13));
+        assertTrue(service.dataValidation(persons2nd));
     }
 
     @Test
     @DisplayName("Test invalid, validasi data")
-    public void testDataValidationFailed() throws IllegalAccessException {
+    public void testDataValidationFailed() {
 
         ArrayList<Person> persons1 = new ArrayList<>();
         persons1.add(new Person(null, 12));

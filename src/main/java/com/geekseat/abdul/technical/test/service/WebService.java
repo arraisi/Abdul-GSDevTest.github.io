@@ -26,7 +26,7 @@ public class WebService {
 
         for (int i = 0; i < persons.size() - 1; i++) {
             if (persons.get(i).getAge() == null || persons.get(i).getDeathOnYear() == null
-                    || persons.get(i).getAge() < 0 || persons.get(i).bornOnYear() < 1) {
+                    || persons.get(i).getAge() < 0 || persons.get(i).bornOnYear() < 0) {
                 throw new IllegalArgumentException("Invalid data");
             }
         }
