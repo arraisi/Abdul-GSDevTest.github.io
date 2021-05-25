@@ -25,7 +25,8 @@ public class WebService {
         }
 
         for (int i = 0; i < persons.size() - 1; i++) {
-            if (persons.get(i).getAge() == null || persons.get(i).getDeathOnYear() == null || persons.get(i).bornOnYear() < 1) {
+            if (persons.get(i).getAge() == null || persons.get(i).getDeathOnYear() == null
+                    || persons.get(i).getAge() < 0 || persons.get(i).bornOnYear() < 1) {
                 throw new IllegalArgumentException("Invalid data");
             }
         }
@@ -36,7 +37,6 @@ public class WebService {
     public int totalKilledInYear(int numberOfYear) {
 
         int n1 = 1, n2 = 1, n3, i, totalKilled = 2;
-//        System.out.print(n1 + " " + n2); // printing 1 and 2
 
         if (numberOfYear <= 2) {
             return numberOfYear;
