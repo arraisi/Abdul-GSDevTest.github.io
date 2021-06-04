@@ -58,21 +58,51 @@ public class WebServiceTests {
     public void testDataValidationFailed() {
 
         ArrayList<Person> persons1 = new ArrayList<>();
-        persons1.add(new Person(null, 12));
+        persons1.add(new Person(10, 12));
         assertThrows(IllegalArgumentException.class, () -> {
             service.dataValidation(persons1);
         });
 
         ArrayList<Person> persons2 = new ArrayList<>();
-        persons2.add(new Person(10, null));
+        persons2.add(new Person(null, 8));
+        persons2.add(new Person(11, 12));
         assertThrows(IllegalArgumentException.class, () -> {
             service.dataValidation(persons2);
         });
 
         ArrayList<Person> persons3 = new ArrayList<>();
-        persons3.add(new Person(10, 5));
+        persons3.add(new Person(8, null));
+        persons3.add(new Person(10, 12));
         assertThrows(IllegalArgumentException.class, () -> {
             assertFalse(service.dataValidation(persons3));
+        });
+
+        ArrayList<Person> persons4 = new ArrayList<>();
+        persons4.add(new Person(null, null));
+        persons4.add(new Person(10, 12));
+        assertThrows(IllegalArgumentException.class, () -> {
+            assertFalse(service.dataValidation(persons4));
+        });
+
+        ArrayList<Person> persons5 = new ArrayList<>();
+        persons5.add(new Person(10, 12));
+        persons5.add(new Person(null, 12));
+        assertThrows(IllegalArgumentException.class, () -> {
+            assertFalse(service.dataValidation(persons5));
+        });
+
+        ArrayList<Person> persons6 = new ArrayList<>();
+        persons6.add(new Person(10, 12));
+        persons6.add(new Person(12, null));
+        assertThrows(IllegalArgumentException.class, () -> {
+            assertFalse(service.dataValidation(persons6));
+        });
+
+        ArrayList<Person> persons7 = new ArrayList<>();
+        persons7.add(new Person(10, 12));
+        persons7.add(new Person(null, null));
+        assertThrows(IllegalArgumentException.class, () -> {
+            assertFalse(service.dataValidation(persons7));
         });
     }
 

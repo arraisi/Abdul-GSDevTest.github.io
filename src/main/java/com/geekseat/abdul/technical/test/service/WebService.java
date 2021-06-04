@@ -24,7 +24,7 @@ public class WebService {
             throw new IllegalArgumentException("Data must be more than one");
         }
 
-        for (int i = 0; i < persons.size() - 1; i++) {
+        for (int i = 0; i < persons.size(); i++) {
             if (persons.get(i).getAge() == null || persons.get(i).getDeathOnYear() == null
                     || persons.get(i).getAge() < 0 || persons.get(i).bornOnYear() < 0) {
                 throw new IllegalArgumentException("Invalid data");
