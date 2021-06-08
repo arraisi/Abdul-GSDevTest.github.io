@@ -33,10 +33,14 @@ public class WebServiceTests {
     @DisplayName("Test gagal menghitung rata-rata orang terbunuh")
     public void testCalculateAverageNumberKilledFailed() {
         ArrayList<Person> persons = new ArrayList<>();
-        persons.add(new Person(10, 12));
-        persons.add(new Person(13, 17));
-        double averageNumberKilled = service.calculateAverageNumberKilled(persons);
-        assertNotEquals(0, averageNumberKilled);
+        persons.add(new Person(-10, 12));
+        persons.add(new Person(13, 15));
+        assertEquals(-1, service.calculateAverageNumberKilled(persons));
+
+        ArrayList<Person> persons1 = new ArrayList<>();
+        persons1.add(new Person(null, 12));
+        persons1.add(new Person(13, 15));
+        assertEquals(-1, service.calculateAverageNumberKilled(persons1));
     }
 
     @Test
@@ -104,6 +108,14 @@ public class WebServiceTests {
         assertThrows(IllegalArgumentException.class, () -> {
             assertFalse(service.dataValidation(persons7));
         });
+
+        ArrayList<Person> persons8 = new ArrayList<>();
+        persons8.add(new Person(-10, 12));
+        persons8.add(new Person(8, 10));
+        assertThrows(IllegalArgumentException.class, () -> {
+            assertFalse(service.dataValidation(persons8));
+        });
+
     }
 
     @Test
