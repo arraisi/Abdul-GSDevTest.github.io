@@ -41,6 +41,21 @@ public class WebServiceTests {
         persons1.add(new Person(null, 12));
         persons1.add(new Person(13, 15));
         assertEquals(-1, service.calculateAverageNumberKilled(persons1));
+
+        ArrayList<Person> persons2 = new ArrayList<>();
+        persons2.add(new Person(12, 10));
+        persons2.add(new Person(12, 15));
+        assertEquals(-1, service.calculateAverageNumberKilled(persons2));
+
+        ArrayList<Person> person3 = new ArrayList<>();
+        person3.add(new Person(10, 14));
+        person3.add(new Person(10, 10));
+        assertEquals(3.5, service.calculateAverageNumberKilled(person3));
+
+        ArrayList<Person> person4 = new ArrayList<>();
+        person4.add(new Person(10, 90));
+        person4.add(new Person(10, 12));
+        assertEquals(-1, service.calculateAverageNumberKilled(person4));
     }
 
     @Test
@@ -63,58 +78,42 @@ public class WebServiceTests {
 
         ArrayList<Person> persons1 = new ArrayList<>();
         persons1.add(new Person(10, 12));
-        assertThrows(IllegalArgumentException.class, () -> {
-            service.dataValidation(persons1);
-        });
+        assertThrows(IllegalArgumentException.class, () -> service.dataValidation(persons1));
 
         ArrayList<Person> persons2 = new ArrayList<>();
         persons2.add(new Person(null, 8));
         persons2.add(new Person(11, 12));
-        assertThrows(IllegalArgumentException.class, () -> {
-            service.dataValidation(persons2);
-        });
+        assertThrows(IllegalArgumentException.class, () -> service.dataValidation(persons2));
 
         ArrayList<Person> persons3 = new ArrayList<>();
         persons3.add(new Person(8, null));
         persons3.add(new Person(10, 12));
-        assertThrows(IllegalArgumentException.class, () -> {
-            assertFalse(service.dataValidation(persons3));
-        });
+        assertThrows(IllegalArgumentException.class, () -> assertFalse(service.dataValidation(persons3)));
 
         ArrayList<Person> persons4 = new ArrayList<>();
         persons4.add(new Person(null, null));
         persons4.add(new Person(10, 12));
-        assertThrows(IllegalArgumentException.class, () -> {
-            assertFalse(service.dataValidation(persons4));
-        });
+        assertThrows(IllegalArgumentException.class, () -> assertFalse(service.dataValidation(persons4)));
 
         ArrayList<Person> persons5 = new ArrayList<>();
         persons5.add(new Person(10, 12));
         persons5.add(new Person(null, 12));
-        assertThrows(IllegalArgumentException.class, () -> {
-            assertFalse(service.dataValidation(persons5));
-        });
+        assertThrows(IllegalArgumentException.class, () -> assertFalse(service.dataValidation(persons5)));
 
         ArrayList<Person> persons6 = new ArrayList<>();
         persons6.add(new Person(10, 12));
         persons6.add(new Person(12, null));
-        assertThrows(IllegalArgumentException.class, () -> {
-            assertFalse(service.dataValidation(persons6));
-        });
+        assertThrows(IllegalArgumentException.class, () -> assertFalse(service.dataValidation(persons6)));
 
         ArrayList<Person> persons7 = new ArrayList<>();
         persons7.add(new Person(10, 12));
         persons7.add(new Person(null, null));
-        assertThrows(IllegalArgumentException.class, () -> {
-            assertFalse(service.dataValidation(persons7));
-        });
+        assertThrows(IllegalArgumentException.class, () -> assertFalse(service.dataValidation(persons7)));
 
         ArrayList<Person> persons8 = new ArrayList<>();
         persons8.add(new Person(-10, 12));
         persons8.add(new Person(8, 10));
-        assertThrows(IllegalArgumentException.class, () -> {
-            assertFalse(service.dataValidation(persons8));
-        });
+        assertThrows(IllegalArgumentException.class, () -> assertFalse(service.dataValidation(persons8)));
 
     }
 
@@ -133,8 +132,10 @@ public class WebServiceTests {
         double numberKilledIn4th = service.totalKilledInYear(4);
         assertEquals(7, numberKilledIn4th);
 
-        double numberKilledIn5th = service.totalKilledInYear(5);
-        assertEquals(12, numberKilledIn5th);
+        double data44 = service.totalKilledInYear(44);
+        assertEquals(1836311902, data44);
+
+        assertThrows(IllegalArgumentException.class, () -> service.totalKilledInYear(45));
     }
 
     @Test
